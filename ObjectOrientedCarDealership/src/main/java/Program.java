@@ -4,12 +4,8 @@ import java.util.ArrayList;
 
 public class Program {
     public static void main(String[] args) {
-        Dealership dBUsedCars = DealershipFileManager.getDealership();
+        UserInterface ui = new UserInterface();
 
-
-
-        for (Vehicle vehicle : dBUsedCars.getAllVehicles()) {
-            System.out.println(vehicle);
-        }
+        ui.display();
     }
 }
