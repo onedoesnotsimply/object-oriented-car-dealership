@@ -46,12 +46,12 @@ public class DealershipFileManager {
             BufferedWriter bfw = new BufferedWriter(new FileWriter("inventory.csv"));
 
             // Write the dealership information to the first line
-            String dealershipInfo = String.format("%s|%s|%s",dealership.getName(),dealership.getAddress(),dealership.getPhone());
+            String dealershipInfo = String.format("%s|%s|%s\n",dealership.getName(),dealership.getAddress(),dealership.getPhone());
             bfw.write(dealershipInfo);
 
             // Write the inventory in the following lines
             for (Vehicle vehicle : dealership.getAllVehicles()) {
-                String formattedVehicle = String.format("%d|%d|%s|%s|%s|%s|%d|%.2f",
+                String formattedVehicle = String.format("%d|%d|%s|%s|%s|%s|%d|%.2f\n",
                         vehicle.getVin(),vehicle.getYear(),vehicle.getMake(),vehicle.getModel(),vehicle.getVehicleType(),
                         vehicle.getColor(),vehicle.getOdometer(),vehicle.getPrice());
                 bfw.write(formattedVehicle);

@@ -71,7 +71,7 @@ public class UserInterface {
         scanner.nextLine(); // Consume the newline
 
         // Call the search method
-        displayVehicles(this.dealership.getVehiclesByPrice(min, max));
+        displayVehicles(dealership.getVehiclesByPrice(min, max));
     }
 
     public void processGetByMakeModelRequest() {
@@ -82,7 +82,7 @@ public class UserInterface {
         String model = scanner.nextLine();
 
         // Display
-        displayVehicles(this.dealership.getVehiclesByMakeModel(make,model));
+        displayVehicles(dealership.getVehiclesByMakeModel(make,model));
     }
 
     public void processGetByYearRequest() {
@@ -94,7 +94,7 @@ public class UserInterface {
         scanner.nextLine(); // Consume the newline
 
         // Display
-        displayVehicles(this.dealership.getVehiclesByYear(min,max));
+        displayVehicles(dealership.getVehiclesByYear(min,max));
     }
 
     public void processGetByColorRequest() {
@@ -103,7 +103,7 @@ public class UserInterface {
         String color = scanner.nextLine();
 
         // Display
-        displayVehicles(this.dealership.getVehiclesByColor(color));
+        displayVehicles(dealership.getVehiclesByColor(color));
     }
 
     public void processGetByMileageRequest() {
@@ -115,7 +115,7 @@ public class UserInterface {
         scanner.nextLine(); // Consume the newline
 
         // Display
-        displayVehicles(this.dealership.getVehiclesByMileage(min,max));
+        displayVehicles(dealership.getVehiclesByMileage(min,max));
     }
 
     public void processGetByVehicleType() {
@@ -124,22 +124,72 @@ public class UserInterface {
         String vehicleType = scanner.nextLine();
 
         // Display
-        displayVehicles(this.dealership.getVehiclesByType(vehicleType));
+        displayVehicles(dealership.getVehiclesByType(vehicleType));
     }
 
     public void processGetAllVehiclesRequest() {
         // Display vehicles in the inventory
-        displayVehicles(this.dealership.getAllVehicles());
+        displayVehicles(dealership.getAllVehicles());
     }
 
     public void processAddVehicleRequest() {
         // Prompt
         System.out.println("Please enter the following information");
+
         System.out.print("Vin : ");
-        
+        int vin = scanner.nextInt();
+        System.out.print("Year : ");
+        int year = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline
+
+        System.out.print("Make : ");
+        String make = scanner.nextLine();
+        System.out.print("Model : ");
+        String model = scanner.nextLine();
+        System.out.print("Vehicle Type : ");
+        String vehicleType = scanner.nextLine();
+        System.out.print("Color : ");
+        String color = scanner.nextLine();
+
+        System.out.print("Odometer reading : ");
+        int odometer = scanner.nextInt();
+        System.out.print("Price : ");
+        double price = scanner.nextDouble();
+        scanner.nextLine(); // Consume the newline
+
+        // Create the new vehicle object
+        Vehicle vehicle = new Vehicle(vin,year,make,model,vehicleType,color,odometer,price);
+
+        // Add the vehicle to the dealership
+        dealership.addVehicle(vehicle);
+
+        // Print out a confirmation message
+        System.out.println("Vehicle added successfully");
+
+        // Save the dealership changes
+        DealershipFileManager.saveDealership(dealership);
     }
 
-    public void processRemoveVehicleRequest() {}
+    public void processRemoveVehicleRequest() {
+        // Prompt for the vin of the vehicle to remove
+        System.out.print("Enter the VIN of the vehicle you want to remove : ");
+        int vin = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline
+
+        // Loop through the inventory for the vehicle with the input VIN number
+        for (Vehicle vehicle : this.dealership.getAllVehicles()){
+            if (vehicle.getVin() == vin){
+                // Remove the vehicle
+                dealership.removeVehicle(vehicle);
+                // Print out a confirmation message
+                System.out.println("Vehicle removed successfully");
+
+            }
+        }
+
+        // Save the dealership changes
+        DealershipFileManager.saveDealership(dealership);
+    }
 
     // Private methods
     private void init() {
