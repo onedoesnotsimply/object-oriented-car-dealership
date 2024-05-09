@@ -32,6 +32,7 @@ public class DealershipFileManager {
                 // Add the Vehicle to the Dealership's inventory
                 dealership.addVehicle(vehicle);
             }
+            bfr.close();
             return dealership;
 
         } catch (FileNotFoundException e) {

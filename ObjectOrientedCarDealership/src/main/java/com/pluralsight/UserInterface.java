@@ -60,11 +60,19 @@ public class UserInterface {
                     System.exit(0);
             }
         }
-
-
     }
 
-    public void processGetByPriceRequest() {}
+    public void processGetByPriceRequest() {
+        // Prompt for price range
+        System.out.print("Enter the minimum price : $");
+        double min = scanner.nextDouble();
+        System.out.print("Enter the maximum price : $");
+        double max = scanner.nextDouble();
+        scanner.nextLine();
+
+        // Call the search method
+        displayVehicles(this.dealership.getVehiclesByPrice(min, max));
+    }
 
     public void processGetByMakeModelRequest() {}
 

@@ -9,16 +9,28 @@ public class Dealership {
     private String phone;
 
     ArrayList<Vehicle> inventory;
+    ArrayList<Vehicle> searchResults;
 
     public Dealership(String name, String address, String phone) {
         this.name=name;
         this.address=address;
         this.phone=phone;
         inventory = new ArrayList<>();
+        searchResults = new ArrayList<>();
     }
 
     public List<Vehicle> getVehiclesByPrice(double min, double max){
-        return null;
+        // Ensure that the searchResults list only returns the results for the CURRENT search
+        searchResults.clear();
+        // For each vehicle in inventory
+        for (Vehicle vehicle : inventory){
+            // If the price is within the input range
+            if ((vehicle.getPrice() >= min) && (vehicle.getPrice() <= max)){
+                // Add it to searchResults
+                searchResults.add(vehicle);
+            }
+        }
+        return searchResults;
     }
 
     public List<Vehicle> getVehiclesByMakeModel(String make, String model){
