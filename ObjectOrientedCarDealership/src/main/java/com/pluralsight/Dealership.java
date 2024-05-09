@@ -20,8 +20,8 @@ public class Dealership {
     }
 
     public List<Vehicle> getVehiclesByPrice(double min, double max){
-        // Ensure that the searchResults list only returns the results for the CURRENT search
-        searchResults.clear();
+        searchResults.clear(); // Clear old search results
+
         // For each vehicle in inventory
         for (Vehicle vehicle : inventory){
             // If the price is within the input range
@@ -34,7 +34,8 @@ public class Dealership {
     }
 
     public List<Vehicle> getVehiclesByMakeModel(String make, String model){
-        searchResults.clear(); // Clear old searchResults
+        searchResults.clear(); // Clear old search results
+
         // For each vehicle in inventory
         for (Vehicle vehicle:inventory){
             // If the make and model match
@@ -47,6 +48,7 @@ public class Dealership {
 
     public List<Vehicle> getVehiclesByYear(int min, int max) {
         searchResults.clear(); // Clear old search results
+
         // Loop through inventory
         for (Vehicle vehicle:inventory){
             // If the year is within the range
@@ -58,7 +60,8 @@ public class Dealership {
     }
 
     public List<Vehicle> getVehiclesByColor(String color){
-        searchResults.clear();
+        searchResults.clear(); // Clear old search results
+
         // Loop through inventory
         for (Vehicle vehicle:inventory){
             if (color.equalsIgnoreCase(vehicle.getColor())){
@@ -69,11 +72,27 @@ public class Dealership {
     }
 
     public List<Vehicle> getVehiclesByMileage(int min, int max) {
-        return null;
+        searchResults.clear(); // Clear search results
+
+        // Loop through inventory
+        for (Vehicle vehicle:inventory) {
+            if (vehicle.getOdometer() >= min && vehicle.getOdometer() <= max){
+                searchResults.add(vehicle);
+            }
+        }
+        return searchResults;
     }
 
     public List<Vehicle> getVehiclesByType(String vehicleType) {
-        return null;
+        searchResults.clear(); // Clear search results
+
+        // Loop through the inventory
+        for (Vehicle vehicle : inventory) {
+            if (vehicleType.equalsIgnoreCase(vehicle.getVehicleType())){
+                searchResults.add(vehicle);
+            }
+        }
+        return searchResults;
     }
 
     public List<Vehicle> getAllVehicles() {
@@ -82,12 +101,13 @@ public class Dealership {
     }
 
     public void addVehicle(Vehicle vehicle){
-        // Allow the user to add a car to the dealership inventory
+        // Adds a vehicle to the dealership inventory
         inventory.add(vehicle);
     }
 
     public void removeVehicle(Vehicle vehicle){
-
+        // Removes a vehicle from the dealership inventory
+        inventory.remove(vehicle);
     }
 
 
