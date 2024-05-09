@@ -74,9 +74,28 @@ public class UserInterface {
         displayVehicles(this.dealership.getVehiclesByPrice(min, max));
     }
 
-    public void processGetByMakeModelRequest() {}
+    public void processGetByMakeModelRequest() {
+        // Prompt
+        System.out.print("Enter the make : ");
+        String make = scanner.nextLine();
+        System.out.print("Enter the model : ");
+        String model = scanner.nextLine();
 
-    public void processGetByYearRequest() {}
+        // Display
+        displayVehicles(this.dealership.getVehiclesByMakeModel(make,model));
+    }
+
+    public void processGetByYearRequest() {
+        // Prompt
+        System.out.print("Enter the minimum year : ");
+        int min = scanner.nextInt();
+        System.out.print("Enter the maximum year : ");
+        int max = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline
+
+        // Display
+        displayVehicles(this.dealership.getVehiclesByYear(min,max));
+    }
 
     public void processGetByColorRequest() {}
 

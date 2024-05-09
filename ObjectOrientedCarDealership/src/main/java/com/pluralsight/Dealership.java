@@ -34,15 +34,38 @@ public class Dealership {
     }
 
     public List<Vehicle> getVehiclesByMakeModel(String make, String model){
-        return null;
+        searchResults.clear(); // Clear old searchResults
+        // For each vehicle in inventory
+        for (Vehicle vehicle:inventory){
+            // If the make and model match
+            if (make.equalsIgnoreCase(vehicle.getMake()) && model.equalsIgnoreCase(vehicle.getModel())) {
+                searchResults.add(vehicle);
+            }
+        }
+        return searchResults;
     }
 
     public List<Vehicle> getVehiclesByYear(int min, int max) {
-        return null;
+        searchResults.clear(); // Clear old search results
+        // Loop through inventory
+        for (Vehicle vehicle:inventory){
+            // If the year is within the range
+            if (vehicle.getYear() >= min && vehicle.getYear() <= max){
+                searchResults.add(vehicle);
+            }
+        }
+        return searchResults;
     }
 
     public List<Vehicle> getVehiclesByColor(String color){
-        return null;
+        searchResults.clear();
+        // Loop through inventory
+        for (Vehicle vehicle:inventory){
+            if (color.equalsIgnoreCase(vehicle.getColor())){
+                searchResults.add(vehicle);
+            }
+        }
+        return searchResults;
     }
 
     public List<Vehicle> getVehiclesByMileage(int min, int max) {
