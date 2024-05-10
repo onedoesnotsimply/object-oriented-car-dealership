@@ -25,39 +25,46 @@ public class UserInterface {
             System.out.println("9) Remove a Vehicle");
             System.out.println("0) Exit");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            try { // Enforce input type
+                int choice = scanner.nextInt();
+                scanner.nextLine();
 
-            switch (choice){
-                case 1:
-                    processGetByPriceRequest();
-                    break;
-                case 2:
-                    processGetByMakeModelRequest();
-                    break;
-                case 3:
-                    processGetByYearRequest();
-                    break;
-                case 4:
-                    processGetByColorRequest();
-                    break;
-                case 5:
-                    processGetByMileageRequest();
-                    break;
-                case 6:
-                    processGetByVehicleType();
-                    break;
-                case 7:
-                    processGetAllVehiclesRequest();
-                    break;
-                case 8:
-                    processAddVehicleRequest();
-                    break;
-                case 9:
-                    processRemoveVehicleRequest();
-                    break;
-                case 0:
-                    System.exit(0);
+                switch (choice){
+                    case 1:
+                        processGetByPriceRequest();
+                        break;
+                    case 2:
+                        processGetByMakeModelRequest();
+                        break;
+                    case 3:
+                        processGetByYearRequest();
+                        break;
+                    case 4:
+                        processGetByColorRequest();
+                        break;
+                    case 5:
+                        processGetByMileageRequest();
+                        break;
+                    case 6:
+                        processGetByVehicleType();
+                        break;
+                    case 7:
+                        processGetAllVehiclesRequest();
+                        break;
+                    case 8:
+                        processAddVehicleRequest();
+                        break;
+                    case 9:
+                        processRemoveVehicleRequest();
+                        break;
+                    case 0:
+                        System.exit(0);
+                    default: // Enforce input range
+                        System.out.println("Invalid input\n");
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input\nPlease enter a number\n");
+                scanner.nextLine(); // Prevent an infinite loop
             }
         }
     }
