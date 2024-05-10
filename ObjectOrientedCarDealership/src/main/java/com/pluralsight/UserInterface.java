@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -62,7 +63,7 @@ public class UserInterface {
                     default: // Enforce input range
                         System.out.println("Invalid input\n");
                 }
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 System.out.println("Invalid input\nPlease enter a number\n");
                 scanner.nextLine(); // Prevent an infinite loop
             }
@@ -184,18 +185,23 @@ public class UserInterface {
         scanner.nextLine(); // Consume the newline
 
         // Loop through the inventory for the vehicle with the input VIN number
-        for (Vehicle vehicle : this.dealership.getAllVehicles()){
-            if (vehicle.getVin() == vin){
-                // Remove the vehicle
-                dealership.removeVehicle(vehicle);
-                // Print out a confirmation message
-                System.out.println("Vehicle removed successfully");
-
+        Vehicle toRemove = null; // Initialize Vehicle
+        for (Vehicle vehicle : dealership.getAllVehicles()){
+            if (vehicle.getVin() == vin){ // If the vehicle exists
+                // Change the value of toRemove to the vehicle
+                toRemove = vehicle;
             }
         }
+        if (toRemove == null) { // If the vehicle wasn't in the inventory
+            System.out.println("Invalid input\nPlease enter a valid VIN"); // Print an error message
+        } else {
+            // Remove the vehicle
+            dealership.removeVehicle(toRemove);
+            System.out.println("Vehicle removed successfully"); // Print out a success message
 
-        // Save the dealership changes
-        DealershipFileManager.saveDealership(dealership);
+            // Save the dealership changes
+            DealershipFileManager.saveDealership(dealership);
+        }
     }
 
     // Private methods
