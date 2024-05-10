@@ -40,6 +40,6 @@ display all vehicles in the inventory, or search for vehicles by various paramet
 ### Interesting Code Snippet
 ![image](https://github.com/onedoesnotsimply/object-oriented-car-dealership/assets/114696575/bec06ed9-bf45-4ba1-9821-d853de4a6f84)
 
-I fount the init() method interesting because I created and used a static class for the assignment of dealership.
+I found the init() method interesting because I created and used a static class for the assignment of dealership.
 
 
